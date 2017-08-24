@@ -1,4 +1,10 @@
-FROM ubuntu:latest
-RUN apt-get update && apt-get install -y supervisor
-COPY supervisord.conf /etc/supervisor/supervisord.conf
-CMD ["/usr/bin/supervisord"]
+FROM ubuntu:16.04
+
+RUN apt-get update && apt-get install -y openssh-server supervisor
+
+COPY sshd.conf /etc/supervisor/conf.d/sshd.conf
+RUN mkdir -p /var/run/sshd
+RUN echo "root:toor" | chpasswd
+
+EXPOSE 22
+CMD ["/usr/bin/supervisord", "n"]
