@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-RUN apt-get update && apt-get install -y openssh-server supervisor apt-utils
+RUN apt-get update && apt-get install -y openssh-server supervisor apt-utils aptitude
 
 RUN mkdir -p /var/run/sshd
 RUN mkdir -p /root/.ssh
