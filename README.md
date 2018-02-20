@@ -1,2 +1,2 @@
 # ubuntu
-ubuntu container for YouSlide
+ubuntu container
