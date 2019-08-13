@@ -1,0 +1,11 @@
+stages:
+- name: build
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: yubuntu
+      pushRemote: true
+      registry: rg.fr-par.scw.cloud/youslide
+timeout: 60
+notification: {}
