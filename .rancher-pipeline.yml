@@ -4,7 +4,25 @@ stages:
   - publishImageConfig:
       dockerfilePath: ./Dockerfile
       buildContext: .
-      tag: yubuntu:${CICD_GIT_COMMIT}
+      tag: yubuntu
       registry: rg.fr-par.scw.cloud/youslide
+- name: Push
+  steps:
+  - runScriptConfig:
+      image: alpine
+      shellScript: |
+        echo POST BUILD
+
+        tag_push() {
+          echo PUSH $1
+
+          docker tag yubuntu $2
+          docker push $2
+        }
+
+        DOCKER_REPO=rg.fr-par.scw.cloud/youslide/yubuntu
+
+        tag_image yubuntu $DOCKER_REPO:${CICD_GIT_COMMIT}
+        tag_image yubuntu $DOCKER_REPO:latest
 timeout: 60
 notification: {}
