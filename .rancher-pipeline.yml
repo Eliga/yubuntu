@@ -1,28 +1,11 @@
 stages:
-- name: Build
+- name: Build and Push
   steps:
   - publishImageConfig:
       dockerfilePath: ./Dockerfile
       buildContext: .
-      tag: yubuntu
+      tag: yubuntu:${CICD_GIT_COMMIT}
+      pushRemote: true
       registry: rg.fr-par.scw.cloud/youslide
-- name: Push
-  steps:
-  - runScriptConfig:
-      image: docker
-      shellScript: |
-        echo POST BUILD
-
-        tag_and_push() {
-          echo PUSH $1
-
-          docker tag yubuntu $2
-          docker push $2
-        }
-
-        DOCKER_REPO=rg.fr-par.scw.cloud/youslide/yubuntu
-
-        tag_and_push yubuntu $DOCKER_REPO:${CICD_GIT_COMMIT}
-        tag_and_push yubuntu $DOCKER_REPO:latest
 timeout: 60
 notification: {}
