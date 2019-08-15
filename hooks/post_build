@@ -9,6 +9,6 @@ tag_image() {
 
 DOKER_REPO=rg.fr-par.scw.cloud/youslide
 
-tag_image $DOCKER_REPO:${SOURCE_COMMIT:0:9}
-tag_image $DOCKER_REPO:latest
-tag_image $DOCKER_REPO:123
+tag_image $IMAGE_NAME $DOCKER_REPO:${SOURCE_COMMIT:0:9}
+tag_image $IMAGE_NAME $DOCKER_REPO:latest
+tag_image $IMAGE_NAME $DOCKER_REPO:123
