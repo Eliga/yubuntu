@@ -1,11 +1,14 @@
 stages:
-- name: build
+- name: Build
   steps:
   - publishImageConfig:
       dockerfilePath: ./Dockerfile
       buildContext: .
-      tag: yubuntu
+      tag: yubuntu:${CICD_GIT_COMMIT}
       pushRemote: true
       registry: rg.fr-par.scw.cloud/youslide
+  - runScriptConfig:
+      image: alpine
+      shellScript: echo ${CICD_GIT_COMMIT}
 timeout: 60
 notification: {}
