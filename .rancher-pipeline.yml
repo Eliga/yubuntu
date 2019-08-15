@@ -7,5 +7,11 @@ stages:
       tag: yubuntu:${CICD_GIT_COMMIT}
       pushRemote: true
       registry: rg.fr-par.scw.cloud/youslide
+- name: Test
+  steps:
+  - runScriptConfig:
+      image: alpine
+      shellScript: echo ${CICD_GIT_REPO_NAME} ${CICD_GIT_URL} ${CICD_GIT_COMMIT} ${CICD_GIT_REF}
+        ${CICD_GIT_BRANCH} ${CICD_GIT_TAG}
 timeout: 60
 notification: {}
