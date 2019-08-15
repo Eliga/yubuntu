@@ -13,7 +13,7 @@ stages:
       shellScript: |
         echo POST BUILD
 
-        tag_push() {
+        tag_and_push() {
           echo PUSH $1
 
           docker tag yubuntu $2
@@ -22,7 +22,7 @@ stages:
 
         DOCKER_REPO=rg.fr-par.scw.cloud/youslide/yubuntu
 
-        tag_image yubuntu $DOCKER_REPO:${CICD_GIT_COMMIT}
-        tag_image yubuntu $DOCKER_REPO:latest
+        tag_and_push yubuntu $DOCKER_REPO:${CICD_GIT_COMMIT}
+        tag_and_push yubuntu $DOCKER_REPO:latest
 timeout: 60
 notification: {}
