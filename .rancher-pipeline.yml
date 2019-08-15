@@ -4,7 +4,7 @@ stages:
   - publishImageConfig:
       dockerfilePath: ./Dockerfile
       buildContext: .
-      tag: yubuntu:${CICD_GIT_COMMIT}
+      tag: yubuntu-tests:${CICD_GIT_COMMIT}
       pushRemote: true
       registry: rg.fr-par.scw.cloud/youslide
 timeout: 60
