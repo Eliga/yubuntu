@@ -1,0 +1,14 @@
+#!/bin/bash
+
+tag_image() {
+  echo TAG $1 $2
+
+  docker tag $1 $2
+  docker push $tag
+}
+
+DOKER_REPO=rg.fr-par.scw.cloud/youslide
+
+tag_image $DOCKER_REPO:${SOURCE_COMMIT:0:9}
+tag_image $DOCKER_REPO:latest
+tag_image $DOCKER_REPO:123
